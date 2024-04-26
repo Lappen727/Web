@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Перевірка формату дійсного числа</title>
+<style>
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+  <input type="text" id="numberInput" placeholder="Введіть дійсне число">
+  <p id="errorText" class="error" style="display: none;">Неправильний формат числа!</p>
+
+  <script>
+    function validateNumber(input) {
+
+      const numberPattern = /^-?\d*\.?\d+$/;
+      return numberPattern.test(input);
+    }
+
+    function toggleErrorDisplay(showError) {
+      const errorText = document.getElementById('errorText');
+      if (showError) {
+        errorText.style.display = 'block';
+      } else {
+        errorText.style.display = 'none';
+      }
+    }
+
+    function handleInput() {
+      const input = document.getElementById('numberInput').value;
+      const isValidNumber = validateNumber(input);
+      toggleErrorDisplay(!isValidNumber);
+    }
+
+    document.getElementById('numberInput').addEventListener('input', handleInput);
+  </script>
+</body>
+</html>
